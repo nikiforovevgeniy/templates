@@ -1,7 +1,9 @@
 <template>
-  <div>MainPage</div>
+  <ExampleFeature />
 </template>
 
 <script lang="ts" setup>
+import { ExampleFeature } from '@/features/ExampleFeature';
+
 //
 </script>

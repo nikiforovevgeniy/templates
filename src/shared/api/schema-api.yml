@@ -1,0 +1,38 @@
+openapi: 3.1.0
+info:
+  title: API
+  version: 1.0.0
+  description: OpenApi schema
+tags:
+  - name: Example
+    description: Пример
+paths:
+  /example:
+    get:
+      tags:
+        - Example
+      operationId: example-api-route
+      responses:
+        '200':
+          description: Array of ExampleResource
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExampleResource'
+components:
+  schemas:
+    ExampleResource:
+      title: ExampleResource
+      type: object
+      required:
+        - id
+        - label
+      properties:
+        id:
+          type: integer
+          description: Идентификатор
+        label:
+          type: string
+          description: Отображаемое значение
