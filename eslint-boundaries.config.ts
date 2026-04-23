@@ -5,10 +5,12 @@ const config = createConfig({
   settings: {
     ...recommended.settings,
     'boundaries/elements': [
-      { type: 'shared', pattern: 'shared/*' },
+      { type: 'shared', pattern: 'shared/*', mode: 'file' },
       { type: 'entities', pattern: 'entities/*' },
       { type: 'features', pattern: 'features/*' },
-      { type: 'pages', pattern: 'pages/*', mode: 'file' },
+      { type: 'pages-file', pattern: 'pages/*.vue', mode: 'file' },
+      { type: 'pages', pattern: 'pages/*' },
+      { type: 'widgets-file', pattern: 'widgets/*.vue', mode: 'file' },
       { type: 'widgets', pattern: 'widgets/*' },
       { type: 'app', pattern: 'app' },
     ],
@@ -28,25 +30,39 @@ const config = createConfig({
             },
             allow: {
               to: {
-                type: ['shared', 'entities', 'features', 'pages', 'widgets'],
+                type: [
+                  'shared',
+                  'entities',
+                  'features',
+                  'pages',
+                  'pages-file',
+                  'widgets',
+                  'widgets-file',
+                ],
               },
             },
           },
-          // Разрешаем из widgets импортировать shared, entities, features, pages
+          // Разрешаем из pages импортировать shared, entities, features, widgets
           {
             from: {
-              type: 'widgets',
+              type: ['pages', 'pages-file'],
             },
             allow: {
               to: {
-                type: ['shared', 'entities', 'features', 'pages'],
+                type: [
+                  'shared',
+                  'entities',
+                  'features',
+                  'widgets',
+                  'widgets-file',
+                ],
               },
             },
           },
-          // Разрешаем из pages импортировать shared, entities, features
+          // Разрешаем из widgets импортировать shared, entities, features
           {
             from: {
-              type: 'pages',
+              type: ['widgets', 'widgets-file'],
             },
             allow: {
               to: {
@@ -87,10 +103,10 @@ const config = createConfig({
               },
             },
           },
-          // Запрещаем из entities, features, widgets импортировать что-то кроме index.ts (public api)
+          // Запрещаем из entities, features, widgets, pages импортировать что-то кроме index.ts (public api)
           {
             to: {
-              type: ['entities', 'features', 'widgets'],
+              type: ['entities', 'features', 'widgets', 'pages'],
               internalPath: '!index.ts',
             },
             disallow: {
