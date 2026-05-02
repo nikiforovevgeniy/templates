@@ -1,9 +1,5 @@
-import { setupWorker } from 'msw/browser';
-import { exampleHandlers } from './exampleHandlers';
-
-const worker = setupWorker(...exampleHandlers);
-
 export const enableApiMocks = async () => {
+  const { worker } = await import('./bootstrap');
   return worker.start({
     onUnhandledRequest: 'bypass',
   });

@@ -5,7 +5,10 @@ import { type _JSONValue, defineQueryOptions } from '@pinia/colada';
 import { serializeQueryKeyValue } from '../client';
 import { client } from '../client.gen';
 import { exampleApiRoute, type Options } from '../sdk.gen';
-import type { ExampleApiRouteData } from '../types.gen';
+import type {
+  ExampleApiRouteData,
+  ExampleApiRouteResponse,
+} from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
   Pick<TOptions, 'path'> & {
@@ -52,16 +55,18 @@ export const exampleApiRouteQueryKey = (
   options?: Options<ExampleApiRouteData>
 ) => createQueryKey('exampleApiRoute', options);
 
-export const exampleApiRouteQuery = defineQueryOptions(
-  (options?: Options<ExampleApiRouteData>) => ({
-    key: exampleApiRouteQueryKey(options),
-    query: async context => {
-      const { data } = await exampleApiRoute({
-        ...options,
-        ...context,
-        throwOnError: true,
-      });
-      return data;
-    },
-  })
-);
+export const exampleApiRouteQuery = defineQueryOptions<
+  Options<ExampleApiRouteData>,
+  ExampleApiRouteResponse,
+  Error
+>((options?: Options<ExampleApiRouteData>) => ({
+  key: exampleApiRouteQueryKey(options),
+  query: async context => {
+    const { data } = await exampleApiRoute({
+      ...options,
+      ...context,
+      throwOnError: true,
+    });
+    return data;
+  },
+}));

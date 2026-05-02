@@ -4,7 +4,7 @@ import {
   HttpResponse,
   type ResponseResolverReturnType,
 } from 'msw';
-import type { ExampleResource } from '../api/generated/types';
+import type { ExampleResource } from '../api/generated';
 
 export const exampleHandlers = [
   // GET /example
