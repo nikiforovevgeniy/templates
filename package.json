@@ -1,0 +1,47 @@
+{
+  "name": "nuxt-test-2",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "drizzle:push": "drizzle-kit push",
+    "drizzle:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@better-auth/drizzle-adapter": "^1.7.1",
+    "@nuxt/eslint": "^1.17.0",
+    "@pinia/colada": "^1.4.2",
+    "@pinia/colada-nuxt": "^1.0.2",
+    "@pinia/nuxt": "^1.0.2",
+    "@tailwindcss/vite": "^4.3.3",
+    "better-auth": "^1.7.1",
+    "drizzle-orm": "^1.0.0-rc.4",
+    "eslint": "^10.8.1",
+    "nuxt": "^4.5.2",
+    "pinia": "^4.0.3",
+    "postgres": "^3.4.9",
+    "tailwindcss": "^4.3.3",
+    "vue": "^3.5.41",
+    "vue-router": "^5.2.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@pinia/colada-devtools": "^1.1.2",
+    "@types/node": "^26.2.0",
+    "drizzle-kit": "^1.0.0-rc.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-boundaries": "^7.2.0",
+    "eslint-plugin-prettier": "^5.5.6"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "esbuild@0.25.12": true,
+    "unrs-resolver@1.12.2": true
+  }
+}
